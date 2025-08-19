@@ -1,10 +1,4 @@
-Adding the project structure to the README file is an excellent idea. It provides a clear visual map for users, making it easier for them to navigate the files and ensure they have everything in place.
-
-Here is the updated and final version of the `README.md` file, which includes the project structure you provided.
-
------
-
-# Data Pipeline de la Federación Nacional de Cafeteros
+# Data Pipeline de la Federación Nacional de Cafeteros usando Apache Airflow - Docker - Python 
 
 Este proyecto es una pipeline de datos automatizada construida con **Apache Airflow** y **Docker**. Su objetivo es extraer datos sobre el precio interno del café de un archivo Excel de la Federación Nacional de Cafeteros, realizar transformaciones básicas y cargar la información en un bucket de **Google Cloud Storage (GCS)**.
 
