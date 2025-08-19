@@ -131,7 +131,7 @@ Para detener todos los servicios y liberar recursos, ejecuta:
 ```bash
 docker compose down
 ```
-!(https://github.com/SheenyxX/cultiveconnect-airflow-etl/blob/main/pipeline%20visual.png)
+![Diagrama del pipeline de CultiveConnect](pipeline visual.png)
 -----
 
 ## Contribuciones
