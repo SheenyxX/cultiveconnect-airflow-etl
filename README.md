@@ -1,3 +1,9 @@
+Adding the project structure to the README file is an excellent idea. It provides a clear visual map for users, making it easier for them to navigate the files and ensure they have everything in place.
+
+Here is the updated and final version of the `README.md` file, which includes the project structure you provided.
+
+-----
+
 # Data Pipeline de la Federación Nacional de Cafeteros
 
 Este proyecto es una pipeline de datos automatizada construida con **Apache Airflow** y **Docker**. Su objetivo es extraer datos sobre el precio interno del café de un archivo Excel de la Federación Nacional de Cafeteros, realizar transformaciones básicas y cargar la información en un bucket de **Google Cloud Storage (GCS)**.
@@ -8,9 +14,9 @@ Este proyecto es una pipeline de datos automatizada construida con **Apache Airf
 
   * **Orquestación**: Se utiliza **Airflow** para programar y monitorear la ejecución de la pipeline.
   * **Contenedorización**: El proceso ETL se ejecuta de forma aislada dentro de un contenedor de Docker, lo que garantiza la portabilidad y un entorno de ejecución consistente.
-  * [cite\_start]**Extracción de Datos**: El script `etl-cafeteros.py` descarga un archivo `.xlsx` directamente de la página web de la Federación Nacional de Cafeteros de Colombia[cite: 1, 4].
-  * [cite\_start]**Transformación**: Se utiliza la librería **Pandas** para limpiar, filtrar y formatear los datos extraídos[cite: 1, 4].
-  * [cite\_start]**Carga de Datos**: La información procesada se guarda como un archivo `.csv` en un bucket de GCS[cite: 1, 4].
+  * **Extracción de Datos**: El script `etl-cafeteros.py` descarga un archivo `.xlsx` directamente de la página web de la Federación Nacional de Cafeteros de Colombia.
+  * **Transformación**: Se utiliza la librería **Pandas** para limpiar, filtrar y formatear los datos extraídos.
+  * **Carga de Datos**: La información procesada se guarda como un archivo `.csv` en un bucket de GCS.
 
 -----
 
@@ -25,27 +31,49 @@ Para ejecutar este proyecto localmente, necesitas tener instalados los siguiente
 
 ## 3\. Estructura del Proyecto
 
+La estructura de carpetas de este proyecto es la siguiente:
+
+```
+.
+├── config/
+├── dags/
+├── logs/
+├── plugins/
+├── .env
+├── .gitignore
+├── cultiveconnect-fc0aa870574b.json
+├── docker-compose.yaml
+├── Dockerfile
+├── etl-cafeteros.py
+└── requirements.txt
+```
+
+### Descripción de Archivos y Carpetas
+
   * `dags/`: Contiene el DAG de Airflow (`etl_dag.py`) que define la pipeline.
   * `etl-cafeteros.py`: El script Python que realiza la extracción, transformación y carga (ETL).
-  * [cite\_start]`Dockerfile`: El archivo que define cómo se construye la imagen de Docker para el script ETL[cite: 2].
+  * `Dockerfile`: El archivo que define cómo se construye la imagen de Docker para el script ETL.
   * `docker-compose.yaml`: Configuración para levantar el clúster de Airflow (Webserver, Scheduler, etc.).
-  * [cite\_start]`requirements.txt`: Lista las librerías de Python necesarias para el script ETL[cite: 1].
-  * [cite\_start]`.env`: Archivo de configuración para variables de entorno de Docker[cite: 7].
-  * [cite\_start]`cultiveconnect-fc0aa870574b.json`: (Archivo confidencial) Credenciales de servicio de Google Cloud para la autenticación[cite: 5].
+  * `requirements.txt`: Lista las librerías de Python necesarias para el script ETL.
+  * `.env`: Archivo de configuración para variables de entorno de Docker.
+  * `cultiveconnect-fc0aa870574b.json`: (Archivo confidencial) Credenciales de servicio de Google Cloud para la autenticación.
+  * `config/`: Carpeta para la configuración de Airflow.
+  * `logs/`: Carpeta donde Airflow almacena los logs de las tareas.
+  * `plugins/`: Carpeta para cualquier plugin de Airflow que se desee usar.
 
 -----
 
 ## 4\. Configuración y Autenticación
 
-[cite\_start]El proyecto utiliza una cuenta de servicio de Google Cloud para autenticarse y subir archivos a GCS[cite: 5]. [cite\_start]El archivo `cultiveconnect-fc0aa870574b.json` contiene las credenciales necesarias[cite: 5].
+El proyecto utiliza una cuenta de servicio de Google Cloud para autenticarse y subir archivos a GCS. El archivo `cultiveconnect-fc0aa870574b.json` contiene las credenciales necesarias.
 
 **Pasos de Configuración:**
 
 1.  Crea tu propia cuenta de servicio en Google Cloud y descarga el archivo JSON de credenciales.
-2.  [cite\_start]Renombra tu archivo JSON a `cultiveconnect-fc0aa870574b.json` y colócalo en la misma carpeta raíz del proyecto[cite: 5].
-3.  [cite\_start]El `Dockerfile` copia este archivo en la imagen de Docker y establece la variable de entorno `GOOGLE_APPLICATION_CREDENTIALS` para que el script pueda encontrarlo[cite: 2].
+2.  Renombra tu archivo JSON a `cultiveconnect-fc0aa870574b.json` y colócalo en la misma carpeta raíz del proyecto.
+3.  El `Dockerfile` copia este archivo en la imagen de Docker y establece la variable de entorno `GOOGLE_APPLICATION_CREDENTIALS` para que el script pueda encontrarlo.
 
-> **ADVERTENCIA**: Por motivos de seguridad, el archivo de credenciales de Google Cloud **NO DEBE** ser subido a repositorios públicos como GitHub. [cite\_start]El `Dockerfile` está diseñado para funcionar con el nombre específico de tu archivo[cite: 2].
+> **ADVERTENCIA**: Por motivos de seguridad, el archivo de credenciales de Google Cloud **NO DEBE** ser subido a repositorios públicos como GitHub. El `Dockerfile` está diseñado para funcionar con el nombre específico de tu archivo.
 
 -----
 
@@ -77,7 +105,7 @@ Configura el ID de usuario de Airflow y construye la imagen de Docker para tu sc
 
 ### Paso 3: Inicializar la Base de Datos y Crear el Usuario
 
-[cite\_start]Antes de iniciar todos los servicios, es necesario inicializar la base de datos de Airflow y crear el usuario administrador por defecto[cite: 1, 2, 7].
+Antes de iniciar todos los servicios, es necesario inicializar la base de datos de Airflow y crear el usuario administrador por defecto.
 
 ```bash
 docker compose up airflow-init
