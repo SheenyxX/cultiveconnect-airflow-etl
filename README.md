@@ -1,4 +1,4 @@
-# Data Pipeline de la Federación Nacional de Cafeteros usando Apache Airflow - Docker - Python 
+# Data Pipeline de la Federación Nacional de Cafeteros
 
 Este proyecto es una pipeline de datos automatizada construida con **Apache Airflow** y **Docker**. Su objetivo es extraer datos sobre el precio interno del café de un archivo Excel de la Federación Nacional de Cafeteros, realizar transformaciones básicas y cargar la información en un bucket de **Google Cloud Storage (GCS)**.
 
@@ -88,10 +88,24 @@ cd nombre-de-tu-repo
 
 Configura el ID de usuario de Airflow y construye la imagen de Docker para tu script ETL.
 
-1.  Crea un archivo `.env` para definir el ID de usuario. Esto evita problemas de permisos de archivos.
+  * **Opción para Linux/macOS:**
+
     ```bash
     echo -e "AIRFLOW_UID=$(id -u)" > .env
     ```
+
+    Este comando asegura que los permisos de los archivos generados por Docker coincidan con tu usuario local.
+
+  * **Opción para Windows o si deseas un UID fijo:**
+
+    ```bash
+    echo "AIRFLOW_UID=50000" > .env
+    ```
+
+    Este comando crea el archivo `.env` con un ID de usuario fijo, lo cual es una solución común para evitar problemas de permisos en Windows.
+
+<!-- end list -->
+
 2.  Construye la imagen de Docker que contiene tu script ETL y sus dependencias.
     ```bash
     docker build -t cultiveconnect-etl .
@@ -131,7 +145,7 @@ Para detener todos los servicios y liberar recursos, ejecuta:
 ```bash
 docker compose down
 ```
-![Diagrama del pipeline de CultiveConnect](pipeline-visual.png)
+
 -----
 
 ## Contribuciones
