@@ -80,8 +80,8 @@ Sigue estos pasos para poner en marcha la pipeline.
 Abre tu terminal y clona el proyecto:
 
 ```bash
-git clone https://github.com/tu-usuario/nombre-de-tu-repo.git
-cd nombre-de-tu-repo
+git clone https://github.com/SheenyxX/cultiveconnect-airflow-etl.git
+cd cultiveconnect-airflow-etl
 ```
 
 ### Paso 2: Configurar el Entorno
