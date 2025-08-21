@@ -147,6 +147,7 @@ docker compose down
 ```
 
 -----
+![Pipeline](pipeline-visual.png)
 
 ## Contribuciones
 
